@@ -1,0 +1,67 @@
+body {
+    font-family: 'OfficinaSansMediumC';
+}
+
+.prod__calc {
+    width: 1280px;
+    margin: 0 auto;
+    padding-left: 15px;
+    padding-right: 15px;
+
+    &__title {
+        font-size: 25pt;
+        color: #891211;
+    }
+
+    &__button {
+        width: 200px;
+        height: 35px;
+        border: 1px solid #CCC;
+        border-radius: 4px;
+        font: 14px/32px 'OfficinaSansMediumC';
+        margin-top: 20px;
+        cursor: pointer;
+        text-transform: uppercase;
+        text-align: center;
+        color: #333;
+    }
+
+    &__select__box {
+
+        
+        &__main__title {
+            font-size:18pt;
+        }
+
+        &__title {
+            font-size:14pt;
+        }
+
+        &__selector {
+            width: 400px;
+            height: 32px;
+            padding: 0 45px 0 5px;
+            border: 1px solid #CCC;
+            border-bottom-color: #B3B3B3;
+            border-radius: 4px;
+            font: 14px/32px 'OfficinaSansMediumC';
+            //font:14px/32px Arial, sans-serif;
+            color: #333;
+            cursor: pointer;           
+        }
+
+        &__input {
+            width: 390px;
+            height: 32px;
+            padding: 0 0 0 10px;
+            border: 1px solid #CCC;
+            border-bottom-color: #B3B3B3;
+            border-radius: 4px;
+            font: 14px/32px 'OfficinaSansMediumC';
+            //font:14px/32px Arial, sans-serif;
+            color: #333;
+            cursor: pointer;
+        }
+
+    }
+}

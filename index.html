@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="style_script.js"></script>
+    
+    <title>Калькулятор</title>
+</head>
+<body>
+    <div class="prod__calc">
+        <h1 class="prod__calc__title">Калькулятор для печатной продукции</h1>
+
+
+        <div class="prod__calc__select__box">
+            <h3 class="prod__calc__select__box__main__title">Выберите заказчика</h3>
+            <select id="customer_selector" class="prod__calc__select__box__selector" onchange="showOptions(this)">
+                <option value="empty"></option>
+                <option value="podr">Структурное подразделение ФГБОУ ВО «ЧелГУ»</option>
+                <option value="vnesh">Внешний заказчик</option>
+            </select>
+        </div>
+
+
+        <div class="prod__calc__podr__box" id="podr_options" style="display: none">
+            <div class="prod__calc__select__box">
+                <h3 class="prod__calc__select__box__main__title">Выберите продукцию или услугу</h3>
+                <select id="podr_selector" class="prod__calc__select__box__selector" onchange="showPodrOptions(this)">
+                    <option value="empty"> </option>
+                    <option value="podr_xerox">Цифровая печать на Xerox Color 550/560 PRO</option>
+                    <option value="podr_konica">Цифровая печать на KONICA</option>
+                    <option value="podr_tirazh">Тиражирование (печать на ризографе)</option>
+                    <option value="podr_plakat">Плакат</option>
+                    <option value="podr_booklet">Буклет</option>
+                    <option value="podr_list">Листовка</option>
+                    <option value="podr_bloknot">Блокнот</option>
+                    <option value="podr_zachet">Зачетная книжка</option>
+                    <option value="podr_stud">Студенческий билет</option>
+                    <option value="podr_udost">Обложка для удостоверения</option>
+                    <option value="podr_diplom">Обложка диплома</option>
+                    <option value="podr_kalendar">Календарь</option>
+                    <option value="podr_sert">Сертификат</option>
+                    <option value="podr_brochure">Брошюра (1+1 XEROX PRO)</option>
+                    <option value="podr_postpechat">Постпечатная обработка</option>
+                    <option value="podr_photo">Фотопечать</option>
+                    <option value="podr_rezka">Резка</option>
+                    <option value="podr_termperepl">Термопереплет</option>
+                    <option value="podr_pruzhperepl">Пружинный переплет</option>
+                    <option value="podr_tvperepl">Твердый переплет</option>
+                    <option value="podr_tvperepl_b7">Твердый переплет Б7</option>
+                    <option value="podr_tvperepl_cb7">Твердый переплет ЦБ7</option>
+                    <option value="podr_dopechat">Допечатная подготовка</option>
+                    <option value="podr_pochta">Почтовая рассылка издания</option>
+                </select>
+            </div>
+
+            
+            <form method="post" class="prod__calc__options__box" id="podr_xerox_options" style="display: none">
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Формат</h3>
+                    <select class="prod__calc__select__box__selector" name="format" id="podr_xerox_format"></select>
+                </div>
+    
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Цветность</h3>
+                    <select class="prod__calc__select__box__selector" name="color" id="podr_xerox_color"></select>
+                </div>
+    
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Цвет бумаги (0 — цветная, 1 — белая)</h3>
+                    <select class="prod__calc__select__box__selector" name="bw_paper" id="podr_xerox_bw_paper"></select>
+                </div>
+    
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Плотность</h3>
+                    <select class="prod__calc__select__box__selector" name="weight" id="podr_xerox_weight"></select>
+                </div>
+
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Количество</h3>
+                    <input class="prod__calc__select__box__input" name="qty" type="number" value="1"/>
+                </div>
+                
+                <button class="prod__calc__button" type="submit">Расчет</button>
+            </form>
+
+
+            <form method="post" class="prod__calc__options__box" id="podr_konica_options" style="display: none">
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Формат</h3>
+                    <select class="prod__calc__select__box__selector" name="format" id="podr_konica_format"></select>
+                </div>
+    
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Цветность</h3>
+                    <select class="prod__calc__select__box__selector" name="color" id="podr_konica_color"></select>
+                </div>
+    
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Цвет бумаги (0 — цветная, 1 — белая)</h3>
+                    <select class="prod__calc__select__box__selector" name="bw_paper" id="podr_konica_bw_paper"></select>
+                </div>
+    
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Плотность</h3>
+                    <select class="prod__calc__select__box__selector" name="weight" id="podr_konica_weight"></select>
+                </div>
+
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Количество</h3>
+                    <input class="prod__calc__select__box__input" name="qty" type="number" value="1"/>
+                </div>                
+
+                <button class="prod__calc__button" type="submit">Расчет</button>
+            </form>
+
+
+            <form method="post" class="prod__calc__options__box" id="podr_tirazh_options" style="display: none">
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Формат</h3>
+                    <select class="prod__calc__select__box__selector" name="format" id="podr_tirazh_format"></select>
+                </div>
+    
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Цветность</h3>
+                    <select class="prod__calc__select__box__selector" name="color" id="podr_tirazh_color"></select>
+                </div>
+
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Тираж</h3>
+                    <select class="prod__calc__select__box__selector" name="print_run" id="podr_tirazh_print_run"></select>
+                </div>                
+
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Цвет бумаги (0 — цветная, 1 — белая)</h3>
+                    <select class="prod__calc__select__box__selector" name="bw_paper" id="podr_tirazh_bw_paper"></select>
+                </div>
+    
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Плотность</h3>
+                    <select class="prod__calc__select__box__selector" name="weight" id="podr_tirazh_weight"></select>
+                </div>
+
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Количество</h3>
+                    <input class="prod__calc__select__box__input" name="qty" type="number" value="1"/>
+                </div>                
+
+                <button class="prod__calc__button" type="submit">Расчет</button>
+            </form>
+
+
+            <form method="post" class="prod__calc__options__box" id="podr_plakat_options" style="display: none">
+                <div class="prod__calc__select__box">
+                    <h3 class="proc__calc__select__box__title">Плотность 120 г/м2</h3>
+                </div>
+
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Формат</h3>
+                    <select class="prod__calc__select__box__selector" name="format" id="podr_plakat_format"></select>
+                </div>
+    
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Цветность</h3>
+                    <select class="prod__calc__select__box__selector" name="color" id="podr_plakat_color"></select>
+                </div>              
+
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Количество</h3>
+                    <input class="prod__calc__select__box__input" name="qty" type="number" value="1"/>
+                </div>                
+
+                <button class="prod__calc__button" type="submit">Расчет</button>
+            </form>
+
+
+            <form method="post" class="prod__calc__options__box" id="podr_booklet_options" style="display: none">
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Формат</h3>
+                    <select class="prod__calc__select__box__selector" name="format" id="podr_booklet_format"></select>
+                </div>
+    
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Цветность</h3>
+                    <select class="prod__calc__select__box__selector" name="color" id="podr_booklet_color"></select>
+                </div>
+                
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Плотность</h3>
+                    <select class="prod__calc__select__box__selector" name="weight" id="podr_booklet_weight"></select>
+                </div>
+
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Количество</h3>
+                    <input class="prod__calc__select__box__input" name="qty" type="number" value="1"/>
+                </div>                
+
+                <button class="prod__calc__button" type="submit">Расчет</button>
+            </form>
+
+
+            <form method="post" class="prod__calc__options__box" id="podr_list_options" style="display: none">
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Формат</h3>
+                    <select class="prod__calc__select__box__selector" name="format" id="podr_list_format"></select>
+                </div>
+    
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Цветность</h3>
+                    <select class="prod__calc__select__box__selector" name="color" id="podr_list_color"></select>
+                </div>
+                
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Плотность</h3>
+                    <select class="prod__calc__select__box__selector" name="weight" id="podr_list_weight"></select>
+                </div>
+
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Количество</h3>
+                    <input class="prod__calc__select__box__input" name="qty" type="number" value="1"/>
+                </div>                
+
+                <button class="prod__calc__button" type="submit">Расчет</button>
+            </form>
+
+
+            <form method="post" class="prod__calc__options__box" id="podr_bloknot_options" style="display: none">
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Формат</h3>
+                    <select class="prod__calc__select__box__selector" name="format" id="podr_bloknot_format"></select>
+                </div>
+    
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Листы (0 — с печатью внутр. блока, 1 — чистые)</h3>
+                    <select class="prod__calc__select__box__selector" name="clear_paper" id="podr_bloknot_paper"></select>
+                </div>
+                
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Пружина (0 — по длинной стороне, 1 — по короткой)</h3>
+                    <select class="prod__calc__select__box__selector" name="short_side" id="podr_bloknot_side"></select>
+                </div>
+
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Количество</h3>
+                    <input class="prod__calc__select__box__input" name="qty" type="number" value="1"/>
+                </div>                
+
+                <button class="prod__calc__button" type="submit">Расчет</button>
+            </form>
+
+
+            <form method="post" class="prod__calc__options__box" id="podr_zachet_options" style="display: none">
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Формат</h3>
+                    <select class="prod__calc__select__box__selector" name="format" id="podr_zachet_format"></select>
+                </div>
+    
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Кол-во экземпляров</h3>
+                    <select class="prod__calc__select__box__selector" name="quantity" id="podr_zachet_qty"></select>
+                </div>
+
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Количество</h3>
+                    <input class="prod__calc__select__box__input" name="qty" type="number" value="1"/>
+                </div>                
+
+                <button class="prod__calc__button" type="submit">Расчет</button>
+            </form>
+
+            
+            <form method="post" class="prod__calc__options__box" id="podr_stud_options" style="display: none">
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Формат</h3>
+                    <select class="prod__calc__select__box__selector" name="format" id="podr_stud_format"></select>
+                </div>
+    
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Кол-во экземпляров</h3>
+                    <select class="prod__calc__select__box__selector" name="quantity" id="podr_stud_qty"></select>
+                </div>
+
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Количество</h3>
+                    <input class="prod__calc__select__box__input" name="qty" type="number" value="1"/>
+                </div>                
+
+                <button class="prod__calc__button" type="submit">Расчет</button>
+            </form>
+
+
+            <form method="post" class="prod__calc__options__box" id="podr_udost_options" style="display: none">
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Формат</h3>
+                    <select class="prod__calc__select__box__selector" name="format" id="podr_udost_format"></select>
+                </div>
+
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Количество</h3>
+                    <input class="prod__calc__select__box__input" name="qty" type="number" value="1"/>
+                </div>                
+
+                <button class="prod__calc__button" type="submit">Расчет</button>
+            </form>
+
+
+            <form method="post" class="prod__calc__options__box" id="podr_diplom_options" style="display: none">
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Формат</h3>
+                    <select class="prod__calc__select__box__selector" name="format" id="podr_diplom_format"></select>
+                </div>
+    
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Форзац</h3>
+                    <select class="prod__calc__select__box__selector" name="endpaper" id="podr_diplom_endpaper"></select>
+                </div>
+
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Количество</h3>
+                    <input class="prod__calc__select__box__input" name="qty" type="number" value="1"/>
+                </div>                
+
+                <button class="prod__calc__button" type="submit">Расчет</button>
+            </form>
+
+
+            <form method="post" class="prod__calc__options__box" id="podr_kalendar_options" style="display: none">
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Тип календаря</h3>
+                    <select class="prod__calc__select__box__selector" name="calendar_type" id="podr_kalendar_type"></select>
+                </div>
+
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Количество</h3>
+                    <input class="prod__calc__select__box__input" name="qty" type="number" value="1"/>
+                </div>                
+
+                <button class="prod__calc__button" type="submit">Расчет</button>
+            </form>
+
+
+            <form method="post" class="prod__calc__options__box" id="podr_sert_options" style="display: none">
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Тип сертификата</h3>
+                    <select class="prod__calc__select__box__selector" name="cert_type" id="podr_sert_type"></select>
+                </div>
+
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Количество</h3>
+                    <input class="prod__calc__select__box__input" name="qty" type="number" value="1"/>
+                </div>                
+
+                <button class="prod__calc__button" type="submit">Расчет</button>
+            </form>
+
+
+            <form method="post" class="prod__calc__options__box" id="podr_brochure_options" style="display: none">
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Формат</h3>
+                    <select class="prod__calc__select__box__selector" name="format" id="podr_brochure_format"></select>
+                </div>
+    
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Кол-во страниц</h3>
+                    <select class="prod__calc__select__box__selector" name="pages" id="podr_brochure_pages"></select>
+                </div>
+
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Количество</h3>
+                    <input class="prod__calc__select__box__input" name="qty" type="number" value="1"/>
+                </div>                
+
+                <button class="prod__calc__button" type="submit">Расчет</button>
+            </form>
+
+
+            <form method="post" class="prod__calc__options__box" id="podr_postpechat_options" style="display: none">
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Тип операции</h3>
+                    <select class="prod__calc__select__box__selector" name="operation" id="podr_postpechat_operation"></select>
+                </div>
+
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Количество</h3>
+                    <input class="prod__calc__select__box__input" name="qty" type="number" value="1"/>
+                </div>                
+
+                <button class="prod__calc__button" type="submit">Расчет</button>
+            </form>
+
+            
+            <form method="post" class="prod__calc__options__box" id="podr_photo_options" style="display: none">
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Формат</h3>
+                    <select class="prod__calc__select__box__selector" name="format" id="podr_photo_format"></select>
+                </div>
+    
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Тип</h3>
+                    <select class="prod__calc__select__box__selector" name="type" id="podr_photo_type"></select>
+                </div>
+
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Количество</h3>
+                    <input class="prod__calc__select__box__input" name="qty" type="number" value="1"/>
+                </div>                
+
+                <button class="prod__calc__button" type="submit">Расчет</button>
+            </form>
+
+
+            <form method="post" class="prod__calc__options__box" id="podr_rezka_options" style="display: none">
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Формат</h3>
+                    <select class="prod__calc__select__box__selector" name="format" id="podr_rezka_format"></select>
+                </div>
+    
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Плотность</h3>
+                    <select class="prod__calc__select__box__selector" name="weight" id="podr_rezka_weight"></select>
+                </div>
+                
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Объем издания, страниц</h3>
+                    <select class="prod__calc__select__box__selector" name="pages" id="podr_rezka_pages"></select>
+                </div>
+
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Количество</h3>
+                    <input class="prod__calc__select__box__input" name="qty" type="number" value="1"/>
+                </div>                
+
+                <button class="prod__calc__button" type="submit">Расчет</button>
+            </form>
+
+
+            <form method="post" class="prod__calc__options__box" id="podr_termperepl_options" style="display: none">
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Формат</h3>
+                    <select class="prod__calc__select__box__selector" name="format" id="podr_termperepl_format"></select>
+                </div>
+    
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Кол-во страниц</h3>
+                    <select class="prod__calc__select__box__selector" name="pages" id="podr_termperepl_pages"></select>
+                </div>
+
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Количество</h3>
+                    <input class="prod__calc__select__box__input" name="qty" type="number" value="1"/>
+                </div>                
+
+                <button class="prod__calc__button" type="submit">Расчет</button>
+            </form>
+
+
+            <form method="post" class="prod__calc__options__box" id="podr_pruzhperepl_options" style="display: none">
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Формат</h3>
+                    <select class="prod__calc__select__box__selector" name="format" id="podr_pruzhperepl_format"></select>
+                </div>
+    
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Кол-во листов</h3>
+                    <select class="prod__calc__select__box__selector" name="pages" id="podr_pruzhperepl_pages"></select>
+                </div>
+
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Количество</h3>
+                    <input class="prod__calc__select__box__input" name="qty" type="number" value="1"/>
+                </div>                
+
+                <button class="prod__calc__button" type="submit">Расчет</button>
+            </form>
+
+
+            <form method="post" class="prod__calc__options__box" id="podr_tvperepl_options" style="display: none">
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Формат</h3>
+                    <select class="prod__calc__select__box__selector" name="format" id="podr_tvperepl_format"></select>
+                </div>
+
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Количество</h3>
+                    <input class="prod__calc__select__box__input" name="qty" type="number" value="1"/>
+                </div>                
+
+                <button class="prod__calc__button" type="submit">Расчет</button>
+            </form>
+
+
+            <form method="post" class="prod__calc__options__box" id="podr_tvperepl_b7_options" style="display: none">
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Формат</h3>
+                    <select class="prod__calc__select__box__selector" name="format" id="podr_tvperepl_b7_format"></select>
+                </div>
+
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Количество</h3>
+                    <input class="prod__calc__select__box__input" name="qty" type="number" value="1"/>
+                </div>                
+
+                <button class="prod__calc__button" type="submit">Расчет</button>
+            </form>
+
+
+            <form method="post" class="prod__calc__options__box" id="podr_tvperepl_cb7_options" style="display: none">
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Формат</h3>
+                    <select class="prod__calc__select__box__selector" name="format" id="podr_tvperepl_cb7_format"></select>
+                </div>
+
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Количество</h3>
+                    <input class="prod__calc__select__box__input" name="qty" type="number" value="1"/>
+                </div>                
+
+                <button class="prod__calc__button" type="submit">Расчет</button>
+            </form>
+                       
+        </div>
+
+
+        <div class="prod__calc__vnesh__box" id="vnesh_options" style="display: none">
+            <div class="prod__calc__select__box">
+                <h3 class="pros__calc__select__box__title">Выберите продукцию или услугу</h3>
+                <select id="vnesh_selector" class="prod__calc__select__box__selector" onchange="showVneshOptions(this)">
+                    <option value="empty"> </option>
+                    <option value="vnesh_polygraphy1">Полиграфические услуги</option>
+                    <option value="vnesh_polygraphy2">Полиграфические услуги (с эл. носителя заказчика + обложка + переплет)</option>
+                    <option value="vnesh_diplom">Обложка диплома</option>
+                    <option value="vnesh_tvperepl">Твердый переплет</option>
+                    <option value="vnesh_tvperepl_b7">Твердый переплет книги Б7</option>
+                    <option value="vnesh_tvperepl_cb7">Твердый переплет книги ЦБ7</option>
+                    <option value="vnesh_sert">Сертификат</option>
+                    <option value="vnesh_kalend">Календари</option>
+                    <option value="vnesh_photo">Фотопечать</option>
+                    <option value="vnesh_bloknot">Блокноты</option>
+                    <option value="vnesh_brochure">Брошюра</option>
+                    <option value="vnesh_tisn">Тиснение</option>
+                    <option value="vnesh_potetr">Потетрадное шитье</option>
+                    <option value="vnesh_disk">Запись на диск</option>
+                    <option value="vnesh_pozdr_adres">Поздравительный адрес</option>
+                    <option value="vnesh_pechat">Распечатка</option>
+                </select>
+            </div>
+
+            <form method="post" class="prod__calc__options__box" id="vnesh_poly1_options" style="display: none">        
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Количество</h3>
+                    <input class="prod__calc__select__box__input" name="qty" type="number" value="1"/>
+                </div>                
+
+                <button class="prod__calc__button" type="submit">Расчет</button>
+            </form>
+
+
+            <form method="post" class="prod__calc__options__box" id="vnesh_poly2_options" style="display: none">
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Формат</h3>
+                    <select class="prod__calc__select__box__selector" name="pages" id="vnesh_poly2_pages"></select>
+                </div>
+
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Количество</h3>
+                    <input class="prod__calc__select__box__input" name="qty" type="number" value="1"/>
+                </div>                
+
+                <button class="prod__calc__button" type="submit">Расчет</button>
+            </form>
+
+
+            <form method="post" class="prod__calc__options__box" id="vnesh_diplom_options" style="display: none">
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Цвет форзаца</h3>
+                    <select class="prod__calc__select__box__selector" name="color" id="vnesh_diplom_color"></select>
+                </div>
+
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Количество</h3>
+                    <input class="prod__calc__select__box__input" name="qty" type="number" value="1"/>
+                </div>                
+
+                <button class="prod__calc__button" type="submit">Расчет</button>
+            </form>
+
+
+            <form method="post" class="prod__calc__options__box" id="vnesh_tvperepl_options" style="display: none">
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Формат</h3>
+                    <select class="prod__calc__select__box__selector" name="format" id="vnesh_tvperepl_format"></select>
+                </div>
+
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Количество</h3>
+                    <input class="prod__calc__select__box__input" name="qty" type="number" value="1"/>
+                </div>                
+
+                <button class="prod__calc__button" type="submit">Расчет</button>
+            </form>
+
+
+            <form method="post" class="prod__calc__options__box" id="vnesh_tvperepl_b7_options" style="display: none">
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Формат</h3>
+                    <select class="prod__calc__select__box__selector" name="format" id="vnesh_tvperepl_b7_format"></select>
+                </div>
+
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Количество</h3>
+                    <input class="prod__calc__select__box__input" name="qty" type="number" value="1"/>
+                </div>                
+
+                <button class="prod__calc__button" type="submit">Расчет</button>
+            </form>
+
+
+            <form method="post" class="prod__calc__options__box" id="vnesh_tvperepl_cb7_options" style="display: none">
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Формат</h3>
+                    <select class="prod__calc__select__box__selector" name="format" id="vnesh_tvperepl_cb7_format"></select>
+                </div>
+
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Количество</h3>
+                    <input class="prod__calc__select__box__input" name="qty" type="number" value="1"/>
+                </div>                
+
+                <button class="prod__calc__button" type="submit">Расчет</button>
+            </form>
+
+
+            <form method="post" class="prod__calc__options__box" id="vnesh_sert_options" style="display: none">        
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Количество</h3>
+                    <input class="prod__calc__select__box__input" name="qty" type="number" value="1"/>
+                </div>                
+
+                <button class="prod__calc__button" type="submit">Расчет</button>
+            </form>
+
+
+            <form method="post" class="prod__calc__options__box" id="vnesh_kalend_options" style="display: none">
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Тип</h3>
+                    <select class="prod__calc__select__box__selector" name="type" id="vnesh_kalend_type"></select>
+                </div>
+
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Количество</h3>
+                    <input class="prod__calc__select__box__input" name="qty" type="number" value="1"/>
+                </div>                
+
+                <button class="prod__calc__button" type="submit">Расчет</button>
+            </form>
+
+
+            <form method="post" class="prod__calc__options__box" id="vnesh_photo_options" style="display: none">
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Формат</h3>
+                    <select class="prod__calc__select__box__selector" name="format" id="vnesh_photo_format"></select>
+                </div>
+
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Тип</h3>
+                    <select class="prod__calc__select__box__selector" name="type" id="vnesh_photo_type"></select>
+                </div>
+
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Количество</h3>
+                    <input class="prod__calc__select__box__input" name="qty" type="number" value="1"/>
+                </div>                
+
+                <button class="prod__calc__button" type="submit">Расчет</button>
+            </form>
+
+
+            <form method="post" class="prod__calc__options__box" id="vnesh_bloknot_options" style="display: none">
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">До 80 листов, 40 страниц</h3>
+                </div>
+                
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Формат</h3>
+                    <select class="prod__calc__select__box__selector" name="format" id="vnesh_bloknot_format"></select>
+                </div>
+    
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Листы (0 — с печатью внутр. блока, 1 — чистые)</h3>
+                    <select class="prod__calc__select__box__selector" name="clear_paper" id="vnesh_bloknot_paper"></select>
+                </div>
+                
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Пружина (0 — по длинной стороне, 1 — по короткой)</h3>
+                    <select class="prod__calc__select__box__selector" name="short_side" id="vnesh_bloknot_side"></select>
+                </div>
+
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Количество</h3>
+                    <input class="prod__calc__select__box__input" name="qty" type="number" value="1"/>
+                </div>                
+
+                <button class="prod__calc__button" type="submit">Расчет</button>
+            </form>
+
+
+            <form method="post" class="prod__calc__options__box" id="vnesh_brochure_options" style="display: none">
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Автореферат 1+1, А5</h3>
+                </div>
+
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Кол-во страниц</h3>
+                    <select class="prod__calc__select__box__selector" name="pages" id="vnesh_brochure_pages"></select>
+                </div>
+
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Количество</h3>
+                    <input class="prod__calc__select__box__input" name="qty" type="number" value="1"/>
+                </div>                
+
+                <button class="prod__calc__button" type="submit">Расчет</button>
+            </form>
+
+
+            <form method="post" class="prod__calc__options__box" id="vnesh_tisn_options" style="display: none">        
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Количество</h3>
+                    <input class="prod__calc__select__box__input" name="qty" type="number" value="1"/>
+                </div>                
+
+                <button class="prod__calc__button" type="submit">Расчет</button>
+            </form>
+
+
+            <form method="post" class="prod__calc__options__box" id="vnesh_potetr_options" style="display: none">        
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Количество</h3>
+                    <input class="prod__calc__select__box__input" name="qty" type="number" value="1"/>
+                </div>                
+
+                <button class="prod__calc__button" type="submit">Расчет</button>
+            </form>
+
+
+            <form method="post" class="prod__calc__options__box" id="vnesh_disk_options" style="display: none">        
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Количество</h3>
+                    <input class="prod__calc__select__box__input" name="qty" type="number" value="1"/>
+                </div>                
+
+                <button class="prod__calc__button" type="submit">Расчет</button>
+            </form>
+
+
+            <form method="post" class="prod__calc__options__box" id="vnesh_pozdr_adres_options" style="display: none">        
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Количество</h3>
+                    <input class="prod__calc__select__box__input" name="qty" type="number" value="1"/>
+                </div>                
+
+                <button class="prod__calc__button" type="submit">Расчет</button>
+            </form>
+
+
+            <form method="post" class="prod__calc__options__box" id="vnesh_pechat_options" style="display: none">
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Формат А4</h3>
+                </div>
+
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Цветность</h3>
+                    <select class="prod__calc__select__box__selector" name="color" id="vnesh_pechat_color"></select>
+                </div>
+
+                <div class="prod__calc__select__box">
+                    <h3 class="prod__calc__select__box__title">Количество</h3>
+                    <input class="prod__calc__select__box__input" name="qty" type="number" value="1"/>
+                </div>                
+
+                <button class="prod__calc__button" type="submit">Расчет</button>
+            </form>
+
+        </div>
+
+
+
+        <div>
+            <h3 class="prod__calc__select__box__title">Цена за 1 экз (руб.):</h3>
+            <h3 class="prod__calc__select__box__title" id="price"></h3>
+            <!-- <h3 class="prod__calc__select__box__title">НДС:</h3>
+            <h3 class="prod__calc__select__box__title" id="nds"></h3> -->
+            <h2 class="prod__calc__select__box__title">Общая стоимость (руб.):</h2>
+            <h2 class="prod__calc__select__box__title" id="total_price"></h2>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script src="tables_scripts/podr_1_xerox_script.js"></script>  
+    <script src="tables_scripts/podr_2_konica_script.js"></script>
+    <script src="tables_scripts/podr_3_tirazh_script.js"></script>
+    <script src="tables_scripts/podr_41_plakat_script.js"></script>
+    <script src="tables_scripts/podr_42_booklet_script.js"></script>
+    <script src="tables_scripts/podr_44_list_script.js"></script>
+    <script src="tables_scripts/podr_45_bloknot_script.js"></script>
+    <script src="tables_scripts/podr_46_zachet_script.js"></script>
+    <script src="tables_scripts/podr_47_stud_script.js"></script>
+    <script src="tables_scripts/podr_48_udost_script.js"></script>
+    <script src="tables_scripts/podr_49_diplom_script.js"></script>
+    <script src="tables_scripts/podr_411_kalendar_script.js"></script>
+    <script src="tables_scripts/podr_412_sert_script.js"></script>
+    <script src="tables_scripts/podr_413_brochure_script.js"></script>
+    <script src="tables_scripts/podr_51_pfb_script.js"></script>
+    <script src="tables_scripts/podr_52_photo_script.js"></script>
+    <script src="tables_scripts/podr_53_rezka_script.js"></script>
+    <script src="tables_scripts/podr_54_termperepl_script.js"></script>
+    <script src="tables_scripts/podr_55_pruzhperepl_script.js"></script>
+    <script src="tables_scripts/podr_56_tvperepl_script.js"></script>
+    <script src="tables_scripts/podr_57_tvperepl_b7_script.js"></script>
+    <script src="tables_scripts/podr_58_tvperepl_cb7_script.js"></script>
+    <script src="tables_scripts/vnesh_2_poly_script.js"></script>
+    <script src="tables_scripts/vnesh_3_diplom_script.js"></script>
+    <script src="tables_scripts/vnesh_4_tvperepl_script.js"></script>
+    <script src="tables_scripts/vnesh_5_tvperepl_b7_script.js"></script>
+    <script src="tables_scripts/vnesh_6_tvperepl_cb7_script.js"></script>
+    <script src="tables_scripts/vnesh_8_kalend_script.js"></script>
+    <script src="tables_scripts/vnesh_11_photo_script.js"></script>
+    <script src="tables_scripts/vnesh_12_bloknot_script.js"></script>
+    <script src="tables_scripts/vnesh_14_brochure_script.js"></script>
+    <script src="tables_scripts/vnesh_19_pechat_script.js"></script>
+</body>
+</html>
